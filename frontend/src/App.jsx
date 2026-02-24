@@ -1,7 +1,10 @@
+import Shortener from "./components/Shortener"
+import Dashboard from "./components/Dashboard"
 function App() {
   return (
     <>
-    <h1>App component</h1>
+     <Shortener/>
+     <Dashboard/>
     </>
   )
 }
