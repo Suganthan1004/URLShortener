@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import '../styles/Analytics.css'
-import axios from 'axios'
 import { fetchClickHistory, fetchUrlStats } from '../services/api'
 
 function Analytics() {
@@ -21,39 +20,6 @@ function Analytics() {
   useEffect(() => {
     fetchUrlStats()
   }, [])
-
-  const fetchUrlStats = async () => {
-    setLoading(true)
-    setError('')
-    try {
-      const response = await fetch(`${API_BASE_URL}/urls/stats`)
-      if (!response.ok) throw new Error('Failed to fetch stats')
-
-      const data = await response.json()
-      setUrlStats(Array.isArray(data) ? data : [])
-    } catch (err) {
-      setError(err.message || 'Error fetching analytics')
-      console.error('Fetch stats error:', err)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const fetchClickHistory = async (urlId) => {
-    setHistoryLoading(true)
-    try {
-      const response = await fetch(`${API_BASE_URL}/urls/${urlId}/clicks`)
-      if (!response.ok) throw new Error('Failed to fetch click history')
-
-      const data = await response.json()
-      setClickHistory(Array.isArray(data) ? data : [])
-    } catch (err) {
-      console.error('Fetch history error:', err)
-      setClickHistory([])
-    } finally {
-      setHistoryLoading(false)
-    }
-  }
 
   const handleSelectUrl = (urlId) => {
     setSelectedUrlId(urlId)
