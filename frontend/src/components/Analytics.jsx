@@ -22,8 +22,6 @@ function Analytics() {
     fetchUrlStats()
   }, [])
 
-<<<<<<< HEAD
-=======
   const fetchUrlStats = async () => {
     setLoading(true)
     setError('')
@@ -56,7 +54,6 @@ function Analytics() {
       setHistoryLoading(false)
     }
   }
->>>>>>> 50d0a352c45450a324607cd5e841643ceff34722
 
   const handleSelectUrl = (urlId) => {
     setSelectedUrlId(urlId)
